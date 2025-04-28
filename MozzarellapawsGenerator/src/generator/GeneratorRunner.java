@@ -13,7 +13,7 @@ public class GeneratorRunner {
     private static int min = 0;
     private static int max = 100;
     private static boolean useAllCheeses = false;
-    private static boolean useAllBodyParts = true;
+    private static boolean useAllBodyParts = false;
 
     /**
      * Generates an Eight-Mozzarellapaws-type name based on certain parameters.
@@ -65,13 +65,13 @@ public class GeneratorRunner {
      */
     private static void getParamsAndGenerateName(Scanner s) {
         System.out.println(
-                "(If you wanna skip right to the final name with DEFAULTS (or whatever your prior conditions were), just press enter. To use SUGGESTED DEFAULTS, type '8'. To use the complicated ones, type '88'.)");
+                "(If you wanna skip right to the final name with SIMPLE DEFAULTS (or whatever your prior conditions were), just press enter. To use SUGGESTED DEFAULTS, type '8'. To use the complicated ones, type '88'.)");
         System.out.println(
                 "Otherwise, if you wanna put in parameters yourself, type something else! Anything! Get crazy with it! So long as it's not a newline. Or the number 8. Or 88.");
 
         String input = s.nextLine();
         if (input.length() < 1) {
-            // no change - either previous parameters, or their originally set defaults
+            // no change - either previous parameters, or their simple defaults
         } else if (input.equals("8")) {
             // use suggested defaults
             min = 0;
@@ -103,7 +103,7 @@ public class GeneratorRunner {
             useAllBodyParts = InputValidation.queryBool(s,
                     "\nSwagalicious! Now for BODY PARTS. Shall I draw from the giant list (type '1'), or the reasonable one (type '0')?");
         }
-        myName = generateName(min, max, useAllCheeses, useAllBodyParts);
+        myName = generateName();
 
         System.out.println("\n\nOkay, time for the grand reveal! My new name is...\n\n");
         System.out.println("\n" + myName + "!\n");
@@ -133,7 +133,8 @@ public class GeneratorRunner {
         boolean again = true;
         while (again) {
             getParamsAndGenerateName(s);
-            again = InputValidation.queryContinue(s, "Wanna generate another? Type 0 for NO, or 1 for YES! Or just press enter for YES if you're in a hurry.");
+            again = InputValidation.queryContinue(s,
+                    "Wanna generate another? Type 0 for NO, or 1 for YES! Or just press enter for YES if you're in a hurry.");
         }
 
         // buh-bye

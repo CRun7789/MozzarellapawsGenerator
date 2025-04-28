@@ -1,5 +1,7 @@
 package generator;
 
+import java.util.Arrays;
+
 public class OptionsHolder {
 
     /*
@@ -15,64 +17,63 @@ public class OptionsHolder {
     /*
      * Pulled from https://en.wikipedia.org/wiki/List_of_cheeses on 4/27/2025.
      */
-    public static String[] allCheeses = { "Mozzarella", "Bouhezza", "Kemariya", "Wagasi", "Ayibe", "Caravane", "Kwaito",
-            "Chechil", "Lori", "Tel-Panir", "Chhana", "Byaslag", "Chura-Kampo", "Chura-Loenpa", "Nguri", "Rubing",
-            "Rushan", "Imeruli", "Sulguni", "Tenili", "Bandel", "Paneer", "Khoa", "Kalari", "Kalimpong", "Qudam",
-            "Dangke", "Sakura", "Imsil", "Susu-Masam", "Byaslag", "Flower-of-Rajya", "Chhurpi", "Kesong-Puti",
-            "Djathë-I-Bardhë", "Kaçkavall", "Djathë=Pice", "Gjizë", "Urdhë", "Bachensteiner", "Bergkäse", "Brimsen",
+    public static String[] uncommonCheeses = { "Mozzarella", "Bouhezza", "Kemariya", "Wagasi", "Ayibe", "Caravane",
+            "Kwaito", "Chechil", "Lori", "Tel-Panir", "Chhana", "Byaslag", "Chura-Kampo", "Chura-Loenpa", "Nguri",
+            "Rubing", "Rushan", "Imeruli", "Sulguni", "Tenili", "Bandel", "Paneer", "Khoa", "Kalari", "Kalimpong",
+            "Qudam", "Dangke", "Sakura", "Imsil", "Susu-Masam", "Byaslag", "Flower-of-Rajya", "Chhurpi", "Kesong-Puti",
+            "Djathë-I-Bardhë", "Kaçkavall", "Djathë-Pice", "Gjizë", "Urdhë", "Bachensteiner", "Bergkäse", "Brimsen",
             "Gelundener-Käse", "Lüneberg", "Montafoner-Sauerkäse", "Mondseer", "Moosbacher", "Staazer", "Steirerkäse",
             "Tyrolean-Grey", "Brussels", "Chimay", "Herve", "LeWavreumont", "Maredsous", "Passendale", "Remoudou",
             "Rodoric", "Livno", "Herzegovina", "Trappista", "Travnički", "Bosnian-Smoked", "Cherni-Vit", "Urdă",
             "Kashkaval", "Sirene", "Paški-Sir", "Paška-Skuta", "Škripavac", "Basa", "Krčki-Sir", "Grobnički-Sir",
             "Dinarski-Sir", "Dinarski-Sir-Iz-Maslinove-Komine", "Sir-Iz-Mišine", "Težački-Sir-Iz-Maslinove-Komine",
             "Lećevački-Sir", "Liburnski-Sir", "Istarska-Skuta", "Dubrovački-Sir", "Tounjski-Sir", "Prgica", "Dimsi",
-            "Caprilo", "Capron", "Ovidur", "Akkawi", "Anari", "Halloumi", "Kefalotyri", "Abertam", "Blaťácké-Zlato",
+            "Caprilo", "Capron", "Ovidur", "Akkawi", "Anari", "Kefalotyri", "Abertam", "Blaťácké-Zlato",
             "Olomoucké-Syrečky", "Hermelín", "Danbo", "Danablu", "Esrom", "Fynbo", "Havarti", "Maribo", "Molbo", "Saga",
             "Samsø", "Tybo", "Vesterhavsost", "Atleet", "Eesti-Juust", "Kadaka-Juust", "Aura", "Lappi", "Leipäjuusto",
-            "Oltermanni", "Raejuusto", "Anthotyros", "Chloro", "Feta", "Graviera", "Kasseri", "Kefalograviera",
-            "Kefalotyri", "Kopanisti", "Malaka", "Manouri", "Metsovone", "Myzithra", "Tyrozouli", "Xynomizithra",
-            "Xynotyro", "Formaela", "Galotyri", "Kalathaki", "Katiki", "Ladotyri", "Pichtogalo-Chanion", "Sfela",
-            "Xygalo", "Gran-Castelli", "Liptauer", "Orda", "Pálpusztai", "Oázis", "Balaton", "Karaván", "Pannónia",
-            "Höfðingi", "Fried-Camembert", "Šar", "Jāņi", "Džiugas", "Ġbejna", "Cașcaval", "Urdă", "Brânză",
-            "Brânză-de-vaci", "Kolašinski-Sir", "Pljevaljski-Sir", "Podgorički-Sir", "Nikšićki-Kozji-Sir",
-            "Njeguški-Sir", "Kashkaval", "Urdă", "Belo-Sirenje", "Brunost", "Gamalost", "Geitost", "Heidal",
-            "Nøkkelost", "Norvegia", "Pultost", "Snøfrisk", "Bałtycki", "Bryndza", "Bryndza-Podhalańska", "Bundz",
-            "Bursztyn", "Edamski", "Gołka", "Gryficki", "Hauskyjza", "Kortowski", "Koryciński", "Królewski", "Liliput",
-            "Lechicki", "Łowicki", "Lubuski", "Mazurski", "Morski", "Oscypek", "Przeworski", "Radamer", "Redykołka",
-            "Rokpol", "Słupski-Chłopczyk", "Twaróg", "Tylżycki", "Zamojski", "Zgorzelecki", "Castelo-Branco",
-            "Queijo-de-Nisa", "Queijo-do-Pico", "Queijo-de-Azeitão", "São-Jorge", "Serra-da-Estrela", "Trás-os-Montes",
-            "Requeijão", "Saloio", "Santarém", "Serpa", "Brânză-de-Burduf", "Brânză-de-Suhaia", "Brânză-de-Vaci", "Caș",
+            "Oltermanni", "Raejuusto", "Anthotyros", "Chloro", "Graviera", "Kasseri", "Kefalograviera", "Kefalotyri",
+            "Kopanisti", "Malaka", "Manouri", "Metsovone", "Myzithra", "Tyrozouli", "Xynomizithra", "Xynotyro",
+            "Formaela", "Galotyri", "Kalathaki", "Katiki", "Ladotyri", "Pichtogalo-Chanion", "Sfela", "Xygalo",
+            "Gran-Castelli", "Liptauer", "Orda", "Pálpusztai", "Oázis", "Balaton", "Karaván", "Pannónia", "Höfðingi",
+            "Fried-Camembert", "Šar", "Jāņi", "Džiugas", "Ġbejna", "Cașcaval", "Urdă", "Brânză", "Brânză-de-vaci",
+            "Kolašinski-Sir", "Pljevaljski-Sir", "Podgorički-Sir", "Nikšićki-Kozji-Sir", "Njeguški-Sir", "Kashkaval",
+            "Urdă", "Belo-Sirenje", "Brunost", "Gamalost", "Geitost", "Heidal", "Nøkkelost", "Norvegia", "Pultost",
+            "Snøfrisk", "Bałtycki", "Bryndza", "Bryndza-Podhalańska", "Bundz", "Bursztyn", "Edamski", "Gołka",
+            "Gryficki", "Hauskyjza", "Kortowski", "Koryciński", "Królewski", "Liliput", "Lechicki", "Łowicki",
+            "Lubuski", "Mazurski", "Morski", "Oscypek", "Przeworski", "Radamer", "Redykołka", "Rokpol",
+            "Słupski-Chłopczyk", "Twaróg", "Tylżycki", "Zamojski", "Zgorzelecki", "Castelo-Branco", "Queijo-de-Nisa",
+            "Queijo-do-Pico", "Queijo-de-Azeitão", "São-Jorge", "Serra-da-Estrela", "Trás-os-Montes", "Requeijão",
+            "Saloio", "Santarém", "Serpa", "Brânză-de-Burduf", "Brânză-de-Suhaia", "Brânză-de-Vaci", "Caș",
             "Kravská-Hrudka", "Korbáčiky", "Oštiepok", "Parenica", "Urda", "Tvaroh", "Encián", "Plesnivec", "Mohant",
             "Tolminc", "Bohinc-Jože", "Nanoški", "Planinski", "Ädelost", "Blå-Gotland", "Grevé", "Gräddost",
             "Herrgårdsost", "Hushållsost", "Moose", "Prästost", "Svecia", "Västerbottensost", "Bilozhar", "Bukovynskyi",
-            "Bryndza", "Dobrodar", "Smetankovyi", "Syr", "Ukrainskyi", "Vurda", "Banbury", "Cheddar", "Stilton",
-            "Stinking-Bishop", "Areesh", "Baramily", "Domiati", "Halumi", "Istanboly", "Mish", "Rumi", "Lighvan",
-            "Talesh", "Mahali", "Kupe-Paniri", "Tzfatit-Kashah", "Tzfatit-Triah", "Labneh", "Kashkawal", "Qishta",
-            "Halloumi", "Hemed", "Kedem", "Knaaan", "Hermon", "Khalla", "Arrabah", "Kafrit", "Akkawi", "Areesh",
-            "Baladi", "Basket", "Charkassiye", "Jameed", "Jibneh-Arabieh", "Jibne-Baida", "Kashkawan", "Majdoule",
-            "Nabulsi", "Shelal", "Surke-or-Shanklish", "Abaza", "Antep-Peyniri", "Armola-Peyniri", "Arnavut",
-            "Beyaz-Peynir", "Çamur", "Çeçil", "Çökelek", "Çömlek-Peyniri", "Dil-Peyniri", "Edirne", "Ezine-Peyniri",
-            "Füme-Çerkes-Peyniri", "Hellim", "Kars-Gravyeri", "Kaşar", "Keçi-Peyniri", "Kirli-Hanım",
-            "Kopanisti-Peyniri", "Küflü-Peynir", "Lor", "Malakan-Peyniri", "Mihaliç-Peyniri", "Obruk", "Örgü",
-            "Salamura", "Sayas", "Süzme-Yoğurt", "Telli-Peynir", "Tulum", "Van-Otlu-Peyniri", "Bleu-Bénédictin",
-            "Cheddar", "Curd", "Oka", "Pikauba", "Palmito", "Turrialba", "Cuajada", "Crema", "Enredo", "Queto",
-            "Quesillo", "Adobera", "Añejo", "Asadero", "Chiapas", "Chihuahua", "Cotija", "Criollo", "Lingallin",
-            "Oaxaca", "Queso-Crema", "Queso-De-Cuajo", "Queso-Fresco", "Queso-Panela", "Requesón", "Quesillo",
-            "Bergenost", "Brick", "Colby", "Colby-Jack", "Colorado-Blackie", "Creole-Cream", "Humboldt-Fog",
-            "Liederkranz", "Monterey-Jack", "Muenster", "Nacho", "Pepper-Jack", "Pinconning", "Provel", "Red-Hawk",
-            "String", "Teleme", "Cottage", "Cremoso", "Criollo", "Goya", "Reggianito", "Sardo", "Chubut", "Tandil",
-            "Mar-del-Plata", "Tafi-del-Valle", "Cuartirolo", "Provoleta", "Queso-de-Maquina", "Chaqueño", "Menonita",
-            "Catupiry", "Minas", "Queijo-Coalho", "Queijo-de-Colônia", "Queijo-Meia-Cura", "Queijo-Canastra",
-            "Queijo-Cobocó", "Queijo-do-Reino", "Queijo-do-Serro", "Queijo-Manteiga", "Queijo-Prato", "Requeijão",
-            "Chanco", "Panquehue", "Renaico", "Queso-Campesino", "Queso-Costeño", "Cuajada", "Queso-Paipa",
-            "Queso-Pera", "Quesillo", "Queso-7-Cueros", "Paraguay", "Allpachaca", "Queso-Andino", "Queso-Fresco",
-            "Colonia", "Cuartirolo", "Danbo", "Sándwich", "Termal", "Yamandú", "Zapicán", "Guayanés", "Queso-Crineja",
-            "Queso-de-Mano", "Queso-Llanero", "Queso-Palmita", "Queso-Parma-de-Barinitas", "Queso-Telita", "Tresse",
-            "Big-Woods-Blue", "Morcella", "Swiss" };
+            "Bryndza", "Dobrodar", "Smetankovyi", "Syr", "Ukrainskyi", "Vurda", "Banbury", "Stinking-Bishop", "Areesh",
+            "Baramily", "Domiati", "Halumi", "Istanboly", "Mish", "Rumi", "Lighvan", "Talesh", "Mahali", "Kupe-Paniri",
+            "Tzfatit-Kashah", "Tzfatit-Triah", "Labneh", "Kashkawal", "Qishta", "Hemed", "Kedem", "Knaaan", "Hermon",
+            "Khalla", "Arrabah", "Kafrit", "Akkawi", "Areesh", "Baladi", "Basket", "Charkassiye", "Jameed",
+            "Jibneh-Arabieh", "Jibne-Baida", "Kashkawan", "Majdoule", "Nabulsi", "Shelal", "Surke-or-Shanklish",
+            "Abaza", "Antep-Peyniri", "Armola-Peyniri", "Arnavut", "Beyaz-Peynir", "Çamur", "Çeçil", "Çökelek",
+            "Çömlek-Peyniri", "Dil-Peyniri", "Edirne", "Ezine-Peyniri", "Füme-Çerkes-Peyniri", "Hellim",
+            "Kars-Gravyeri", "Kaşar", "Keçi-Peyniri", "Kirli-Hanım", "Kopanisti-Peyniri", "Küflü-Peynir", "Lor",
+            "Malakan-Peyniri", "Mihaliç-Peyniri", "Obruk", "Örgü", "Salamura", "Sayas", "Süzme-Yoğurt", "Telli-Peynir",
+            "Tulum", "Van-Otlu-Peyniri", "Bleu-Bénédictin", "Cheddar", "Curd", "Oka", "Pikauba", "Palmito", "Turrialba",
+            "Cuajada", "Crema", "Enredo", "Queto", "Quesillo", "Adobera", "Añejo", "Asadero", "Chiapas", "Chihuahua",
+            "Cotija", "Criollo", "Lingallin", "Oaxaca", "Queso-Crema", "Queso-De-Cuajo", "Queso-Fresco", "Queso-Panela",
+            "Requesón", "Quesillo", "Bergenost", "Brick", "Colorado-Blackie", "Creole-Cream", "Humboldt-Fog",
+            "Liederkranz", "Pinconning", "Provel", "Red-Hawk", "Teleme", "Cremoso", "Criollo", "Goya", "Reggianito",
+            "Sardo", "Chubut", "Tandil", "Mar-del-Plata", "Tafi-del-Valle", "Cuartirolo", "Provoleta",
+            "Queso-de-Maquina", "Chaqueño", "Menonita", "Catupiry", "Minas", "Queijo-Coalho", "Queijo-de-Colônia",
+            "Queijo-Meia-Cura", "Queijo-Canastra", "Queijo-Cobocó", "Queijo-do-Reino", "Queijo-do-Serro",
+            "Queijo-Manteiga", "Queijo-Prato", "Requeijão", "Chanco", "Panquehue", "Renaico", "Queso-Campesino",
+            "Queso-Costeño", "Cuajada", "Queso-Paipa", "Queso-Pera", "Quesillo", "Queso-7-Cueros", "Paraguay",
+            "Allpachaca", "Queso-Andino", "Queso-Fresco", "Colonia", "Cuartirolo", "Danbo", "Sándwich", "Termal",
+            "Yamandú", "Zapicán", "Guayanés", "Queso-Crineja", "Queso-de-Mano", "Queso-Llanero", "Queso-Palmita",
+            "Queso-Parma-de-Barinitas", "Queso-Telita", "Tresse", "Big-Woods-Blue", "Edam", "Dutch", "Gruyere" };
 
     public static String[] commonCheeses = { "Mozzarella", "Feta", "Cheddar", "Stilton", "Halloumi", "Cheddar", "Cream",
             "Colby", "Colby-Jack", "Monterey-Jack", "Muenster", "Nacho", "Pepper-Jack", "Provolone", "String",
-            "Cottage", "Swiss" };
+            "Cottage", "Swiss", "Parmesan", "Burrata", "Paneer", "Brie", "Camembert", "Ricotta", "Gouda", "Bleu",
+            "Roquefort", "Havarti", "Goat", "Gorgonzola", "Babybel", "Cheshire" };
 
     public static String[] allBodyParts = { "paws", "fangs", "claws", "tail", "pelt", "fur", "heart", "whiskers",
             "stripes", "nose", "face", "ears", "fluff", "mouth", "eyes", "head", "shoulders", "knees", "toes", "ankles",
@@ -92,7 +93,7 @@ public class OptionsHolder {
     public static String getGreeting() {
         return RandomSelector.getRandomFromArray(greetings) + "!";
     }
-    
+
     /**
      * Returns a String reaction to a name.
      * 
@@ -120,6 +121,10 @@ public class OptionsHolder {
      */
     public static String getCheese(boolean includeAll) {
         if (includeAll) {
+            // source for array concatenation code:
+            // https://stackoverflow.com/questions/80476/how-can-i-concatenate-two-arrays-in-java
+            String[] allCheeses = Arrays.copyOf(commonCheeses, commonCheeses.length + uncommonCheeses.length);
+            System.arraycopy(uncommonCheeses, 0, allCheeses, commonCheeses.length, uncommonCheeses.length);
             return RandomSelector.getRandomFromArray(allCheeses);
         } else {
             return RandomSelector.getRandomFromArray(commonCheeses);
