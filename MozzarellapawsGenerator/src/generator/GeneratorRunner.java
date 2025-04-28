@@ -104,7 +104,7 @@ public class GeneratorRunner {
 
         System.out.println("\n\nOkay, time for the grand reveal! My new name is...\n\n");
         System.out.println("\n" + myName + "!\n");
-        System.out.println("Hey, that's got a ring to it!");
+        System.out.println(OptionsHolder.getReaction());
 
         addNameToTextFile();
     }

@@ -8,6 +8,10 @@ public class OptionsHolder {
     public static String[] greetings = { "Hi chat", "Hey guys", "Howdy", "Wassup", "Hello", "Hi there", "Hey there",
             "Hola", "Hi", "Hey", "Howdy-doo", "Aloha", "Sup", "Welcome", "Hey chat" };
 
+    public static String[] reactions = { "Hey, that's got a ring to it!", "Not bad!", "I like it!", "Ohhhh yeahhhh!",
+            "Hm. Alright then.", "Oh. Uhh... moving on.", "Well that is... something.", "What a mouthful!",
+            "Can I be honest with you? I hate this one." };
+
     /*
      * Pulled from https://en.wikipedia.org/wiki/List_of_cheeses on 4/27/2025.
      */
@@ -89,6 +93,15 @@ public class OptionsHolder {
         return RandomSelector.getRandomFromArray(greetings) + "!";
     }
     
+    /**
+     * Returns a String reaction to a name.
+     * 
+     * @return String reaction
+     */
+    public static String getReaction() {
+        return RandomSelector.getRandomFromArray(reactions);
+    }
+
     /**
      * Returns a wordified and capitalized version of a number to be used for a first name.
      * 
