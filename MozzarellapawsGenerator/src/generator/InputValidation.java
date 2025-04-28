@@ -13,6 +13,7 @@ public class InputValidation {
     private static final String AFTER_PROMPT_SPACE = " ";
     private static final String DEFAULT_REPROMPT_MESSAGE = "...um, did you mean to type that? I'm not sure that's what I asked for. Please try again!";
     private static final int[] BOOLEAN_OPTIONS = { 0, 1 };
+    private static final String[] CONTINUE_OPTIONS = { "", "0", "1" };
 
     public static boolean queryBool(Scanner scnr, String promptMessage) {
         int answer = queryIntFromOptions(BOOLEAN_OPTIONS, scnr, promptMessage);
@@ -21,7 +22,23 @@ public class InputValidation {
         }
         return false;
     }
-    
+
+    /**
+     * Results same as queryBool but inputting an empty line works the same as true. Code copied from queryStringFromOptions
+     */
+    public static boolean queryContinue(Scanner scnr, String promptMessage) {
+        String queriedString = queryString(scnr, promptMessage);
+
+        while (!valueIsInArray(CONTINUE_OPTIONS, queriedString)) {
+            queriedString = queryString(scnr, DEFAULT_REPROMPT_MESSAGE);
+        }
+
+        if (queriedString.equals("0")) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Prompts a user for an integer value and ensures that the user provides viable input. Caller must provide the
      * initial user prompt message (e.g., "Please enter an integer.") and the user re-prompt message (e.g., "That wasn't

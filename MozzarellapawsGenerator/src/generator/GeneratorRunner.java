@@ -10,6 +10,10 @@ import java.util.Scanner;
 public class GeneratorRunner {
 
     public static String myName;
+    private static int min = 0;
+    private static int max = 100;
+    private static boolean useAllCheeses = false;
+    private static boolean useAllBodyParts = true;
 
     /**
      * Generates an Eight-Mozzarellapaws-type name based on certain parameters.
@@ -32,30 +36,13 @@ public class GeneratorRunner {
     }
 
     /**
-     * Generates an Eight-Mozzarellapaws-type name using simple default parameters.
+     * Generates an Eight-Mozzarellapaws-type name based on the same parameters as before, or defaults if no prior names
+     * have been generated.
      * 
      * @return a complete name
      */
-    private static String generateNameSimple() {
-        return generateName(0, 100, false, false);
-    }
-
-    /**
-     * Generates an Eight-Mozzarellapaws-type name using suggested default parameters.
-     * 
-     * @return a complete name
-     */
-    private static String generateNameSuggested() {
-        return generateName(0, 100, false, true);
-    }
-    
-    /**
-     * Generates an Eight-Mozzarellapaws-type name using complicated default parameters.
-     * 
-     * @return a complete name
-     */
-    private static String generateNameComplicated() {
-        return generateName(-999999999, 999999999, true, true);
+    private static String generateName() {
+        return generateName(min, max, useAllCheeses, useAllBodyParts);
     }
 
     /**
@@ -65,7 +52,7 @@ public class GeneratorRunner {
         String filepath = "./names_generated.txt";
         String nameToAdd = myName + "\n";
         try {
-            Files.write(Paths.get(filepath), nameToAdd.getBytes(), StandardOpenOption.APPEND); // everyone say "thank you stack overflow"
+            Files.write(Paths.get(filepath), nameToAdd.getBytes(), StandardOpenOption.APPEND); // thanks stack overflow
         } catch (IOException e) {
             System.out.println("...Awww, but I can't add it to the list of all generated names right meow. Sad day :(");
         }
@@ -78,27 +65,32 @@ public class GeneratorRunner {
      */
     private static void getParamsAndGenerateName(Scanner s) {
         System.out.println(
-                "(If you wanna skip right to the final name with SIMPLE DEFAULTS, just press enter. For SUGGESTED DEFAULTS, type '8'. For complicated, type '88'.)");
-        System.out
-                .println("Otherwise, if you wanna put in parameters yourself, type something else! Anything! Get crazy with it! So long as it's not a newline. Or the number 8. Or 88.");
+                "(If you wanna skip right to the final name with DEFAULTS (or whatever your prior conditions were), just press enter. To use SUGGESTED DEFAULTS, type '8'. To use the complicated ones, type '88'.)");
+        System.out.println(
+                "Otherwise, if you wanna put in parameters yourself, type something else! Anything! Get crazy with it! So long as it's not a newline. Or the number 8. Or 88.");
 
         String input = s.nextLine();
         if (input.length() < 1) {
-            // use simple defaults
-            myName = generateNameSimple();
+            // no change - either previous parameters, or their originally set defaults
         } else if (input.equals("8")) {
             // use suggested defaults
-            myName = generateNameSuggested();
+            min = 0;
+            max = 100;
+            useAllCheeses = false;
+            useAllBodyParts = true;
         } else if (input.equals("88")) {
             // use complicated defaults
-            myName = generateNameComplicated();
+            min = -999999999;
+            max = 999999999;
+            useAllCheeses = true;
+            useAllBodyParts = true;
         } else {
             // prompt for parameters
             System.out.println("Great, you're still here! That means you're looking for some customization!");
-            int min = InputValidation.queryInt(s,
+            min = InputValidation.queryInt(s,
                     "First off, I need the MINIMUM NUMBER for my first name. Negatives are allowed! But, uh, maybe don't put negative 999 william... that might be too high...");
-            int max = InputValidation.queryInt(s,
-                    "Got it! Now, the MAXIMUM NUMBER my first name could be. Again, please not 999 william!!");
+            max = InputValidation.queryInt(s,
+                    "Got it! Now, the MAXIMUM NUMBER (exclusive) my first name could be. Again, please not 999 william!!");
 
             System.out.println(
                     "\nFor my next two tricks- I mean, next parts of my name- I'm gonna need a boolean. '0' is gonna be FALSE/NO, and '1' is gonna stand for TRUE/YES.\n");
@@ -106,13 +98,12 @@ public class GeneratorRunner {
                     "In terms of CHEESE, I have two lists of options: the first has one william types of cheese from all around the world! There are a lot!!");
             System.out
                     .println("The second has types of cheeses that you're more likely to find in a US grocery store.");
-            boolean useAllCheeses = InputValidation.queryBool(s,
+            useAllCheeses = InputValidation.queryBool(s,
                     "Wanna use the GIANT LIST? Remember, '1' for YES or '0' for NO.");
-            boolean useAllBodyParts = InputValidation.queryBool(s,
+            useAllBodyParts = InputValidation.queryBool(s,
                     "\nSwagalicious! Now for BODY PARTS. Shall I draw from the giant list (type '1'), or the reasonable one (type '0')?");
-
-            myName = generateName(min, max, useAllCheeses, useAllBodyParts);
         }
+        myName = generateName(min, max, useAllCheeses, useAllBodyParts);
 
         System.out.println("\n\nOkay, time for the grand reveal! My new name is...\n\n");
         System.out.println("\n" + myName + "!\n");
@@ -120,7 +111,7 @@ public class GeneratorRunner {
 
         addNameToTextFile();
     }
-    
+
     /**
      * The typical main method - gets user input, calls all the methods, and presents the results to the user.
      * 
@@ -137,14 +128,14 @@ public class GeneratorRunner {
         System.out.println(
                 "\nSo, you've gotta enter some info for me. We're basing this name off the icomic amd imeffable Eight Mozzarellapaws!");
         System.out.println("Their name has three parts: a NUMBER, a CHEESE, and a BODY PART.");
-        
+
         // create names as long as the user wants
         boolean again = true;
         while (again) {
             getParamsAndGenerateName(s);
-            again = InputValidation.queryBool(s, "Wanna generate another? Type 1 for YES or 0 for NO!");
+            again = InputValidation.queryContinue(s, "Wanna generate another? Type 0 for NO, or 1 for YES! Or just press enter for YES if you're in a hurry.");
         }
-        
+
         // buh-bye
         System.out.println("It was fun playing with you! Bye-bye! :3");
         s.close();

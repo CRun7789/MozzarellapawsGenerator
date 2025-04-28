@@ -68,11 +68,11 @@ public class OptionsHolder {
             "Queso-Pera", "Quesillo", "Queso-7-Cueros", "Paraguay", "Allpachaca", "Queso-Andino", "Queso-Fresco",
             "Colonia", "Cuartirolo", "Danbo", "Sándwich", "Termal", "Yamandú", "Zapicán", "Guayanés", "Queso-Crineja",
             "Queso-de-Mano", "Queso-Llanero", "Queso-Palmita", "Queso-Parma-de-Barinitas", "Queso-Telita", "Tresse",
-            "Big-Woods-Blue", "Morcella" };
+            "Big-Woods-Blue", "Morcella", "Swiss" };
 
     public static String[] commonCheeses = { "Mozzarella", "Feta", "Cheddar", "Stilton", "Halloumi", "Cheddar", "Cream",
             "Colby", "Colby-Jack", "Monterey-Jack", "Muenster", "Nacho", "Pepper-Jack", "Provolone", "String",
-            "Cottage" };
+            "Cottage", "Swiss" };
 
     public static String[] allBodyParts = { "paws", "fangs", "claws", "tail", "pelt", "fur", "heart", "whiskers",
             "stripes", "nose", "face", "ears", "fluff", "mouth", "eyes", "head", "shoulders", "knees", "toes", "ankles",
