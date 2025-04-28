@@ -31,7 +31,7 @@ public class NumToWordConverter {
             if (soFar.length() > 1) {
                 soFar =  tensNames[number % 10] + "-" + soFar.substring(1);
             } else {
-                soFar =  tensNames[number % 10] + "-" + soFar;
+                soFar =  tensNames[number % 10] + soFar;
             }
             number /= 10;
         }

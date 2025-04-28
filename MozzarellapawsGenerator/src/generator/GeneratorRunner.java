@@ -53,7 +53,7 @@ public class GeneratorRunner {
      * Adds the generated name to the list of all previously generated names.
      */
     private static void addNameToTextFile() {
-        String filepath = "./all_generated_names";
+        String filepath = "./names_generated.txt";
         String nameToAdd = myName + "\n";
         try {
             Files.write(Paths.get(filepath), nameToAdd.getBytes(), StandardOpenOption.APPEND);
@@ -71,7 +71,7 @@ public class GeneratorRunner {
         System.out.println(
                 "(If you wanna skip right to the final name with SIMPLE DEFAULTS, just press enter. For SUGGESTED DEFAULTS, type '8'.)");
         System.out
-                .println("Otherwise, if you wanna put in parameters yourself, type something else! Anything! Get crazy with it! So long as it's not a newline.");
+                .println("Otherwise, if you wanna put in parameters yourself, type something else! Anything! Get crazy with it! So long as it's not a newline. Or the number 8.");
 
         String input = s.nextLine();
         if (input.length() < 1) {
