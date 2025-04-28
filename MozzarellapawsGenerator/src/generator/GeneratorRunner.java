@@ -48,6 +48,15 @@ public class GeneratorRunner {
     private static String generateNameSuggested() {
         return generateName(0, 100, false, true);
     }
+    
+    /**
+     * Generates an Eight-Mozzarellapaws-type name using complicated default parameters.
+     * 
+     * @return a complete name
+     */
+    private static String generateNameComplicated() {
+        return generateName(-999999999, 999999999, true, true);
+    }
 
     /**
      * Adds the generated name to the list of all previously generated names.
@@ -56,7 +65,7 @@ public class GeneratorRunner {
         String filepath = "./names_generated.txt";
         String nameToAdd = myName + "\n";
         try {
-            Files.write(Paths.get(filepath), nameToAdd.getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get(filepath), nameToAdd.getBytes(), StandardOpenOption.APPEND); // everyone say "thank you stack overflow"
         } catch (IOException e) {
             System.out.println("...Awww, but I can't add it to the list of all generated names right meow. Sad day :(");
         }
@@ -69,9 +78,9 @@ public class GeneratorRunner {
      */
     private static void getParamsAndGenerateName(Scanner s) {
         System.out.println(
-                "(If you wanna skip right to the final name with SIMPLE DEFAULTS, just press enter. For SUGGESTED DEFAULTS, type '8'.)");
+                "(If you wanna skip right to the final name with SIMPLE DEFAULTS, just press enter. For SUGGESTED DEFAULTS, type '8'. For complicated, type '88'.)");
         System.out
-                .println("Otherwise, if you wanna put in parameters yourself, type something else! Anything! Get crazy with it! So long as it's not a newline. Or the number 8.");
+                .println("Otherwise, if you wanna put in parameters yourself, type something else! Anything! Get crazy with it! So long as it's not a newline. Or the number 8. Or 88.");
 
         String input = s.nextLine();
         if (input.length() < 1) {
@@ -80,6 +89,9 @@ public class GeneratorRunner {
         } else if (input.equals("8")) {
             // use suggested defaults
             myName = generateNameSuggested();
+        } else if (input.equals("88")) {
+            // use complicated defaults
+            myName = generateNameComplicated();
         } else {
             // prompt for parameters
             System.out.println("Great, you're still here! That means you're looking for some customization!");
